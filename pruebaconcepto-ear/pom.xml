@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>es.intricom.pruebaconcepto</groupId>
+        <artifactId>pruebaconcepto</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>pruebaconcepto-ear</artifactId>
+    <packaging>ear</packaging>
+    <name>pruebaConcepto - EAR</name>
+    <description>Archivo EAR de la prueba de concepto</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-8.0</artifactId>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>es.intricom.pruebaconcepto</groupId>
+            <artifactId>pruebaconcepto-ejb</artifactId>
+            <type>ejb</type>
+        </dependency>
+
+        <dependency>
+            <groupId>es.intricom.pruebaconcepto</groupId>
+            <artifactId>pruebaconcepto-back</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>es.intricom.pruebaconcepto</groupId>
+            <artifactId>pruebaconcepto-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>es.intricom.pruebaconcepto</groupId>
+            <artifactId>pruebaconcepto-persistence</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>es.intricom.pruebaconcepto</groupId>
+            <artifactId>pruebaconcepto-commons</artifactId>
+        </dependency>
+        
+    </dependencies>
+
+    <build>
+
+        <finalName>${project.parent.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <includeLibInApplicationXml>false</includeLibInApplicationXml>
+                    <!-- Nom mòduls d'acord amb punt 4.2 de l'Estàndard CAIB -->
+                    <outputFileNameMapping>@{artifactId}@-@{version}@.@{extension}@</outputFileNameMapping>
+                    <version>8</version>
+                    <archive>
+                        <manifestEntries>
+                            <project-version>${project.version}</project-version>
+                            <project-buildtime>${maven.build.timestamp}</project-buildtime>
+                            <scm-revision>${buildNumber}</scm-revision>
+                        </manifestEntries>
+                    </archive>
+                    <modules>
+                        <ejbModule>
+                            <groupId>es.intricom.pruebaconcepto</groupId>
+                            <artifactId>pruebaconcepto-ejb</artifactId>
+                            <bundleFileName>pruebaconcepto-ejb.jar</bundleFileName>
+                        </ejbModule>
+                        <!-- BACK START -->
+                        <webModule>
+                            <groupId>es.intricom.pruebaconcepto</groupId>
+                            <artifactId>pruebaconcepto-back</artifactId>
+                            <contextRoot>/pruebaconceptoback</contextRoot>
+                            <bundleFileName>pruebaconcepto-back.war</bundleFileName>
+                        </webModule>
+                        <!-- BACK END -->
+                    </modules>
+                </configuration>
+            </plugin>
+            <!--
+                Para Cargar / Desplegar la app.
+                Documentación ús: https://codehaus-cargo.github.io/cargo/Maven2+plugin.html
+                configuración: https://codehaus-cargo.github.io/cargo/Maven2+Plugin+Reference+Guide.html
+            -->
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven3-plugin</artifactId>
+                <configuration>
+                    <skip>false</skip>
+                    <deployables>
+                        <deployable>
+                            <properties>
+                                <name>${project.build.finalName}</name>
+                            </properties>
+                        </deployable>
+                    </deployables>
+                </configuration>
+            </plugin>
+            <!-- Define la propiedad ${buildNumber} que se emplea en el filtrado -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

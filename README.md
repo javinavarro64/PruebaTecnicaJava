@@ -2,7 +2,7 @@
 
 
 # ![Logo](https://www.intricom.es/wp-content/uploads/2020/03/cropped-icono.png) Prueba técnica para desarrollador java 
- *Desarrollador*
+
 
 ## Instrucciones
 

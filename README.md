@@ -8,8 +8,12 @@
 
 1. Clonar este repositorio en vuestra cuenta de github
 2. Dar permiso a la cuenta ***bserapio@intricom.es*** para dicho repositorio
-3. Hacer commits descriptivos para ir viendo la evolución del mismo
-4. Rellenar este documento con las instrucciones para el despliegue. 
+3. Descargarse el servidor JBOSS-7.2 [desde este enlace](https://intricomressources-my.sharepoint.com/:u:/g/personal/bserapio_intricom_es/EfRQTAllZhRPuYdkx76dEkQBsSuDPWte7IX3_uyo7I9HTw?e=lh53D4). Contiene un JBOSS con los drivers de Oracle y Postgress instalados, además de tener la ruta de los archivos de properties ya configurados en standalone.xml
+4. Poner el archivo .zip dentro de la carpeta **.deployment/docker/jboss**
+5. Dentro de la carpeta del punto anterior, vereis un DOCKERFILE que monta la imagen de docker
+6. Dentro de la misma carpeta teneis una carpeta de properties, si ncesitais meter alguna variable de entorno para cargarla se pone en uno de esos .properties y se regenera la imágen.
+7. Hacer commits descriptivos para ir viendo la evolución del mismo
+8. Rellenar este documento con las instrucciones para el despliegue. 
 
 ***Observaciones***
 

@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+
+        <ui:define name="pageTitle">#{labels.newClient_title}</ui:define>
+
+        <ui:define name="breadcrumb">
+            <p:menuitem value="#{labels.listClient_link}" outcome="/clientList" styleClass="ml-2" />
+            <p:menuitem value="#{labels.newClient_link}" outcome="/clientNew" styleClass="ml-2" />
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form id="clientNew">
+                <p:panel header="#{labels.newClient_title}">
+                    <p:panelGrid columns="1" layout="grid">
+                        <p:outputLabel for="name" value="Nombre del cliente"/>
+                        <p:inputText id="name" value='#{clientEditController.name}'/>
+                        <p:outputLabel for="address" value="Dirección del cliente"/>
+                        <p:inputText id="address" value='#{clientEditController.address}'/>
+                        <p:outputLabel for="phone" value="Teléfono del cliente"/>
+                        <p:inputText id="phone" value='#{clientEditController.phone}'/>
+
+                        <p:commandButton value="#{labels.newClient_link}" action="#{clientEditController.create}" ajax="false"/>
+                        <p:linkButton outcome="clientList" value="Cerrar" />
+                    </p:panelGrid>
+                    <input type="hidden" value="${_csrf.token}" name="${_csrf.parameterName}"/>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

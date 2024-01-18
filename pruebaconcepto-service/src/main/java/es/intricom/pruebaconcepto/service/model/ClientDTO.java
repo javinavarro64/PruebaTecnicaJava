@@ -1,39 +1,26 @@
-package es.intricom.pruebaconcepto.persistence.model;
+package es.intricom.pruebaconcepto.service.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+public class ClientDTO implements Serializable {
 
-@Entity
-@SequenceGenerator(name = "PCO_CLIENT_SEQ", sequenceName = "PCO_CLIENT_SEQ", allocationSize = 1)
-@Table(name = "PCO_CLIENT")
-public class ClientEntity implements Serializable {
+    private static final long serialVersionUID = 5484532743348740443L;
 
-    private static final long serialVersionUID = 5447502483196695164L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PCO_CLIENT_SEQ")
-    @Column(name = "ID", nullable = false, length = 10)
-    private Integer id;
-
-    @Column(name = "NAME", nullable = false)
+	private Integer id;
     private String name;
-
-    @Column(name = "ADDRESS")
     private String address;
-
-    @Column(name = "PHONE")
     private String phone;
-
-    @Column(name = "CREATED_DATE", nullable = false)
     private LocalDateTime createdDate;
+
+    public ClientDTO(Integer id, String name, String address, String phone, LocalDateTime createdDate) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.createdDate = createdDate;
+    }
 
     public Integer getId() {
         return id;

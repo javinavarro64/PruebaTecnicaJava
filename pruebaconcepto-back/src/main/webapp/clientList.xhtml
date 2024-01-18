@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <!--
+    Pagina con el listado de clientes
+    -->
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+
+        <ui:define name="pageTitle">#{labels.listClient_title}</ui:define>
+
+        <ui:define name="breadcrumb">
+            <p:menuitem value="#{labels.listClient_link}" outcome="/clientList" styleClass="ml-2" />
+        </ui:define>
+
+        <ui:define name="content">
+            <p:dataTable id="clientList" value="#{clientListController.clients}" var="client"
+                styleClass="order-table"
+                headerClass="order-table-header"
+                rowClasses="order-table-odd-row,order-table-even-row">
+                <p:column headerText="Id">
+                    <h:outputText value="#{client.id}"/>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{client.name}"/>
+                </p:column>
+                <p:column headerText="Dirección">
+                    <h:outputText value="#{client.address}"/>
+                </p:column>
+                <p:column headerText="Teléfono">
+                    <h:outputText value="#{client.phone}"/>
+                </p:column>
+                <p:column headerText="Fecha creación">
+                    <h:outputText value="#{client.createdDate}">
+                        <f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy HH:mm" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Acciones">
+                    <p:linkButton value="#{labels.editClient_link}" outcome="clientEdit">
+                       <f:param name="clientId" value="#{client.id}"/>
+                    </p:linkButton>
+                </p:column>
+            </p:dataTable>
+            <p:linkButton outcome="clientNew" value="#{labels.newClient_link}" />
+        </ui:define>
+    </ui:composition>
+</html>

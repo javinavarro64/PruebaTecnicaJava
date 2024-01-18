@@ -3,8 +3,23 @@ version: '3.1'
 services:
     database:
         image: 'postgres:16.1'
+        restart: always
         ports:
             - 5432:5432
         environment:
             POSTGRES_USER: 'pruebaconcepto'
             POSTGRES_PASSWORD: 'pruebaconcepto'
+        volumes:
+            - ./scripts/bbdd:/docker-entrypoint-initdb.d:r
+
+    container:
+        image: 'intricom/jbosseap:7.2'
+        restart: always
+        depends_on:
+            - database
+        ports:
+            - 8084:8084
+            - 9994:9994
+            - 8789:8789
+        volumes:
+            - ./scripts/datasources:/opt/jboss/standalone/deployments/datasources:rw

@@ -5,7 +5,7 @@
              http://www.ironjacamar.org/doc/schema/datasources_1_2.xsd">
 
     <datasource jndi-name="java:jboss/datasources/pruebaconceptoDS" pool-name="pruebaconceptoDS">
-        <connection-url>jdbc:postgresql://localhost:5432/pruebaconcepto</connection-url>
+        <connection-url>jdbc:postgresql://database:5432/pruebaconcepto</connection-url>
         <driver>postgresql</driver>
         <security>
             <user-name>pruebaconcepto</user-name>

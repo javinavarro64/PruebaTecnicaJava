@@ -1,10 +1,15 @@
 package es.intricom.pruebaconcepto.persistence.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
 @SequenceGenerator(name = "PCO_HOTEL_SEQ", sequenceName = "PCO_HOTEL_SEQ", allocationSize = 1)
@@ -18,15 +23,13 @@ public class HotelEntity implements Serializable {
 	@Column(name = "ID", nullable = false, length = 10)
 	private Integer id;
 
-	@Column(name = "NAME")
-	@NotNull
+	@Column(name = "NAME", nullable = false)
 	private String name;
 
 	@Column(name = "ADDRESS")
 	private String address;
 
 	@Column(name = "CREATED_DATE")
-	@NotNull
 	private LocalDateTime createdDate;
 
 	public void setId(Integer id) {

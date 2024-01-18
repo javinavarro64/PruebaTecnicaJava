@@ -1,7 +1,7 @@
 
 
 
-# ![Logo](https://www.intricom.es/wp-content/uploads/2020/03/cropped-icono.png) Prueba técnica para desarrollador java 
+# ![Logo](https://www.intricom.es/wp-content/uploads/2020/03/cropped-icono.png) Prueba técnica para desarrollador java
 
 
 ## Instrucciones
@@ -13,7 +13,7 @@
 5. Dentro de la carpeta del punto anterior, vereis un DOCKERFILE que monta la imagen de docker
 6. Dentro de la misma carpeta teneis una carpeta de properties, si ncesitais meter alguna variable de entorno para cargarla se pone en uno de esos .properties y se regenera la imágen.
 7. Hacer commits descriptivos para ir viendo la evolución del mismo
-8. Rellenar este documento con las instrucciones para el despliegue. 
+8. Rellenar este documento con las instrucciones para el despliegue.
 
 ***Observaciones***
 
@@ -36,10 +36,18 @@ Como servicios docker tiene que aparecer un servicio **JBOSS 7.2** y un servicio
 La forma de evaluación será la siguiente una vez entregada la prueba:
 
 1. Se montará una máquina virtual en Linux ( Ubuntu 20.04)
-2. Se clonará el repositorio del candidato 
+2. Se clonará el repositorio del candidato
 3. Dentro del repositorio se ejecutará ***docker-compose up***
 4. Se seguirá las instrucciones  escritas en esta guía para poder desplegar la solución y probar su funcionamiento
 
+
+## INSTRUCCIONES PARA CONSTRUIR LA IMAGEN DE DOCKER
+
+Lanzar el siguiente comando desde la ruta base del proyecto:
+
+```
+    docker build -t intricom/jbosseap:7.2 -f .deployment/docker/jboss/Dockerfile .
+```
 
 
 ## INSTRUCCIONES PARA EL DESPLIEGUE

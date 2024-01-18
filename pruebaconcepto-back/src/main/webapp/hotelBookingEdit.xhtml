@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+
+        <ui:define name="pageTitle">#{labels.editHotelBooking_title}</ui:define>
+
+        <ui:define name="breadcrumb">
+            <p:menuitem value="#{labels.listHotelBooking_link}" outcome="/hotelBookingList" styleClass="ml-2" />
+            <p:menuitem value="#{labels.editHotelBooking_link}" outcome="/hotelBookingEdit" styleClass="ml-2" />
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form id="hotelBookingEdit">
+                <p:panel header="#{labels.editHotelBooking_title}">
+                    <p:panelGrid columns="1" layout="grid">
+                        <p:outputLabel for="hotel" value="Seleccione hotel"/>
+                        <h:selectOneMenu id="hotel" value="#{hotelBookingEditController.hotelId}">
+                            <f:selectItems value="#{hotelBookingEditController.hoteles}" var="hotel"
+                                itemValue="#{hotel.id}" itemLabel="#{hotel.name}" />
+                        </h:selectOneMenu>
+
+                        <p:outputLabel for="name" value="Nombre de la reserva"/>
+                        <p:inputText id="name" required="true" value='#{hotelBookingEditController.name}'
+                            requiredMessage="El nombre de la reserva es obligatorio"/>
+
+                        <p:outputLabel for="address" value="Dirección de la reserva"/>
+                        <p:inputText id="address" value='#{hotelBookingEditController.address}'/>
+
+                        <p:outputLabel for="cliente" value="Seleccione cliente"/>
+                        <h:selectOneMenu id="cliente" value="#{hotelBookingEditController.clienteId}">
+                            <f:selectItems value="#{hotelBookingEditController.clientes}" var="cliente"
+                                itemValue = "#{cliente.id}" itemLabel = "#{cliente.name}" />
+                        </h:selectOneMenu>
+
+                        <p:commandButton value="Actualizar" action="#{hotelBookingEditController.update}" ajax="false"/>
+                        <p:linkButton outcome="hotelBookingList" value="Cerrar" />
+                    </p:panelGrid>
+                    <input type="hidden" value="${_csrf.token}" name="${_csrf.parameterName}"/>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

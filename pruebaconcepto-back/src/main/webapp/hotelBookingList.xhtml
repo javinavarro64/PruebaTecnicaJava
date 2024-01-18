@@ -12,12 +12,41 @@
         <ui:define name="pageTitle">#{labels.listHotelBooking_title}</ui:define>
 
         <ui:define name="breadcrumb">
-            <p:menuitem value="#{labels.listHotelBooking_link}" outcome="/hotelBookingList"/>
+            <p:menuitem value="#{labels.listHotelBooking_link}" outcome="/hotelBookingList" styleClass="ml-2" />
         </ui:define>
 
         <ui:define name="content">
-            <p>...
-            </p>
+            <p:dataTable id="hotelBookingList" value="#{hotelBookingListController.bookings}" var="booking"
+                styleClass="order-table"
+                headerClass="order-table-header"
+                rowClasses="order-table-odd-row,order-table-even-row">
+                <p:column headerText="Id">
+                    <h:outputText value="#{booking.id}"/>
+                </p:column>
+                <p:column headerText="Nombre del hotel">
+                    <h:outputText value="#{booking.hotel.name}"/>
+                </p:column>
+                <p:column headerText="Nombre de la reserva">
+                    <h:outputText value="#{booking.name}"/>
+                </p:column>
+                <p:column headerText="Dirección de la reserva">
+                    <h:outputText value="#{booking.address}"/>
+                </p:column>
+                <p:column headerText="Nombre del cliente">
+                    <h:outputText value="#{booking.cliente.name}"/>
+                </p:column>
+                <p:column headerText="Fecha creación">
+                    <h:outputText value="#{booking.createdDate}">
+                        <f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy HH:mm" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Acciones">
+                    <p:linkButton value="#{labels.editHotelBooking_link}" outcome="hotelBookingEdit">
+                       <f:param name="bookingId" value="#{booking.id}"/>
+                    </p:linkButton>
+                </p:column>
+            </p:dataTable>
+            <p:linkButton outcome="hotelBookingNew" value="#{labels.newHotelBooking_link}" />
         </ui:define>
     </ui:composition>
 </html>

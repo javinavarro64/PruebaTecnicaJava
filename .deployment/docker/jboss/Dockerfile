@@ -40,7 +40,7 @@ USER jboss
 WORKDIR /opt/jboss
 
 # Download and configure JBoss EAP
-COPY --chown=jboss ./.deployment/docker/frontales/config/jboss-eap-7.2.zip /tmp/
+COPY --chown=jboss ./.deployment/docker/jboss/jboss-eap-7.2.zip /tmp/
 
 RUN unzip /tmp/jboss-eap-$JBOSS_VERSION.zip -d /tmp/ \
     && mv /tmp/jboss-eap-$JBOSS_VERSION/* $JBOSS_HOME/ \
@@ -48,7 +48,7 @@ RUN unzip /tmp/jboss-eap-$JBOSS_VERSION.zip -d /tmp/ \
 
 FROM server as development
 
-COPY --chown=jboss ./.deployment/docker/frontales/config/properties/*.properties $JBOSS_CONFIG/
+COPY --chown=jboss ./.deployment/docker/jboss/properties/*.properties $JBOSS_CONFIG/
 
 EXPOSE 8084 9994 8789
 CMD ["/opt/jboss/bin/standalone.sh","-c", "standalone.xml", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0", "--debug", "*:8789"]

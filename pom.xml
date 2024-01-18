@@ -27,8 +27,18 @@
         <wildfly-arquillian.version>3.0.1.Final</wildfly-arquillian.version>
         <mockito.version>2.21.0</mockito.version>
 
-
     </properties>
+
+    <!--
+        Configuración necesaria para evitar que falle buildnumber-maven-plugin, en un escenario de desarrollo real
+        sería necesario configurar la URL real del repositorio
+    -->
+    <scm>
+        <connection>scm:svn:http://localhost</connection>
+        <developerConnection>scm:svn:http://localhost</developerConnection>
+        <url>scm:svn:http://localhost</url>
+    </scm>
+
     <dependencyManagement>
         <dependencies>
 

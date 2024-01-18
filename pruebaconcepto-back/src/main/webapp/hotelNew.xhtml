@@ -19,7 +19,9 @@
                 <p:panel header="#{labels.newHotel_title}">
                     <p:panelGrid columns="1" layout="grid">
                         <p:outputLabel for="name" value="Nombre del hotel"/>
-                        <p:inputText id="name" value='#{hotelEditController.name}'/>
+                        <p:inputText id="name" required="true" value='#{hotelEditController.name}'
+                            requiredMessage="El nombre del hotel es obligatorio" />
+
                         <p:outputLabel for="address" value="Dirección del hotel"/>
                         <p:inputText id="address" value='#{hotelEditController.address}'/>
 

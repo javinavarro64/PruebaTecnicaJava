@@ -19,9 +19,12 @@
                 <p:panel header="#{labels.newClient_title}">
                     <p:panelGrid columns="1" layout="grid">
                         <p:outputLabel for="name" value="Nombre del cliente"/>
-                        <p:inputText id="name" value='#{clientEditController.name}'/>
+                        <p:inputText id="name" required="true" value='#{clientEditController.name}'
+                            requiredMessage="El nombre del cliente es obligatorio" />
+
                         <p:outputLabel for="address" value="Dirección del cliente"/>
                         <p:inputText id="address" value='#{clientEditController.address}'/>
+
                         <p:outputLabel for="phone" value="Teléfono del cliente"/>
                         <p:inputText id="phone" value='#{clientEditController.phone}'/>
 

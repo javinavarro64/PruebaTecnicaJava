@@ -41,17 +41,27 @@ La forma de evaluación será la siguiente una vez entregada la prueba:
 4. Se seguirá las instrucciones  escritas en esta guía para poder desplegar la solución y probar su funcionamiento
 
 
-## INSTRUCCIONES PARA CONSTRUIR LA IMAGEN DE DOCKER
+## INSTRUCCIONES PARA EL DESPLIEGUE
 
-Lanzar el siguiente comando desde la ruta base del proyecto:
+IMPORTANTE: Antes de proceder es necesario haber descargado la distribución de JBoss tal y como se indica en las
+instrucciones del apartado anterior.
 
+Construimos la imagen docker para el contenedor de aplicaciones JBoss EAP 7.2 con el siguiente comando:
 ```
     docker build -t intricom/jbosseap:7.2 -f .deployment/docker/jboss/Dockerfile .
 ```
 
+A continuación procederemos a compilar y empaquetar el proyecto con el siguiente comando:
+```
+    mvn clean package
+```
 
-## INSTRUCCIONES PARA EL DESPLIEGUE
-****
+Una vez compilado el proyecto procederemos a levantar los contenedores necesarios y a desplegar la aplicación:
+```
+    docker compose up -d
+    docker compose cp ./pruebaconcepto-ear/target/pruebaconcepto.ear container:/opt/jboss/standalone/deployments/
+```
 
-Se necesita rellenar este apartado como guía para desplegar la solución
+Si todo ha ido bien deberíamos poder acceder a la aplicación en esta url:
+http://localhost:8084/pruebaconceptoback
 

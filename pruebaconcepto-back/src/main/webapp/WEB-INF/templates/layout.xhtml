@@ -26,14 +26,14 @@ Plantilla.
                 type="text/javascript"></script>
     </h:head>
     <h:body>
-        <!-- 
-        Les declaram aquí enlloc de a HEAD per assegurar que es carreguen després dels de Primefaces 
+        <!--
+        Les declaram aquí enlloc de a HEAD per assegurar que es carreguen després dels de Primefaces
         Veure: https://stackoverflow.com/a/8774997/11751648
         -->
         <h:outputStylesheet name="css/bootstrap.min.css" />
         <h:outputStylesheet name="css/open-iconic-bootstrap.css" />
         <h:outputStylesheet name="css/styles.css" />
-        
+
         <h:form prependId="false">
             <header>
                 <!-- Header -->
@@ -50,19 +50,11 @@ Plantilla.
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav mobil">
                             <li class="nav-item colorVerd">
-                                <p:link styleClass="nav-link mobil" outcome="/listUnitatOrganica"
-                                            title="#{labels.listUnitatOrganica_link}">                                                                    
-                                    <span class="oi oi-briefcase" title="#{labels.listUnitatOrganica_link}"
+                                <p:link styleClass="nav-link mobil" outcome="/hotelList"
+                                            title="#{labels.listHotel_link}">
+                                    <span class="oi oi-cog" title="#{labels.listHotel_link}"
                                           aria-hidden="true"></span>
-                                    <span class="mb-0 float-right botoCurt">#{labels.listUnitatOrganica_link}</span>
-                                </p:link>
-                            </li>
-                            <li class="nav-item colorVerd">
-                                <p:link styleClass="nav-link mobil" outcome="/configuracio"
-                                            title="#{labels.configuracio_link}">                                                                    
-                                    <span class="oi oi-cog" title="#{labels.configuracio_link}"
-                                          aria-hidden="true"></span>
-                                    <span class="mb-0 float-right botoCurt">#{labels.configuracio_link}</span>
+                                    <span class="mb-0 float-right botoCurt">#{labels.listHotel_link}</span>
                                 </p:link>
                             </li>
                             <li class="nav-item dropdown colorVerd">

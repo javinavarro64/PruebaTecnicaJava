@@ -5,16 +5,14 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <!--
-    Pàgina amb el llistat d'unitats orgàniques.
+    Pagina con el listado de reservas
     -->
     <ui:composition template="/WEB-INF/templates/layout.xhtml">
 
-
-
-        <ui:define name="pageTitle">#{labels.listUnitatOrganica_title}</ui:define>
+        <ui:define name="pageTitle">#{labels.listHotelBooking_title}</ui:define>
 
         <ui:define name="breadcrumb">
-            <p:menuitem value="#{labels.listUnitatOrganica_link}" outcome="/listUnitatOrganica"/>
+            <p:menuitem value="#{labels.listHotelBooking_link}" outcome="/hotelBookingList"/>
         </ui:define>
 
         <ui:define name="content">

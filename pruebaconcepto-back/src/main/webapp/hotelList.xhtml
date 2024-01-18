@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <!--
+    Pagina con el listado de hoteles
+    -->
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+
+        <ui:define name="pageTitle">#{labels.listHotel_title}</ui:define>
+
+        <ui:define name="breadcrumb">
+            <p:menuitem value="#{labels.listHotel_link}" outcome="/hotelList" styleClass="ml-2" />
+        </ui:define>
+
+        <ui:define name="content">
+            <p:dataTable id="hotelList" value="#{hotelListController.hotels}" var="hotel"
+                styleClass="order-table"
+                headerClass="order-table-header"
+                rowClasses="order-table-odd-row,order-table-even-row">
+                <p:column headerText="Id">
+                    <h:outputText value="#{hotel.id}"/>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{hotel.name}"/>
+                </p:column>
+                <p:column headerText="Dirección">
+                    <h:outputText value="#{hotel.address}"/>
+                </p:column>
+                <p:column headerText="Fecha creación">
+                    <h:outputText value="#{hotel.createdDate}">
+                        <f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy HH:mm" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Acciones">
+                    <p:linkButton value="#{labels.editHotel_link}" outcome="hotelEdit">
+                       <f:param name="hotelId" value="#{hotel.id}"/>
+                    </p:linkButton>
+                </p:column>
+            </p:dataTable>
+            <p:linkButton outcome="hotelNew" value="#{labels.newHotel_link}" />
+        </ui:define>
+    </ui:composition>
+</html>

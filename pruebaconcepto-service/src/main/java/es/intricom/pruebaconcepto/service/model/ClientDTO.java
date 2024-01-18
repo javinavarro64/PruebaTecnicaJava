@@ -7,15 +7,18 @@ public class ClientDTO implements Serializable {
 
     private static final long serialVersionUID = 5484532743348740443L;
 
-	private Integer id;
+    private Integer id;
     private String name;
     private String address;
     private String phone;
     private LocalDateTime createdDate;
 
-    public ClientDTO(Integer id, String name, String address, String phone, LocalDateTime createdDate) {
-        super();
+    public ClientDTO(Integer id) {
         this.id = id;
+    }
+
+    public ClientDTO(Integer id, String name, String address, String phone, LocalDateTime createdDate) {
+        this(id);
         this.name = name;
         this.address = address;
         this.phone = phone;
